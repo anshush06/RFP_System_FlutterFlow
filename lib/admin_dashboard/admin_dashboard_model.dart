@@ -6,6 +6,17 @@ import 'admin_dashboard_widget.dart' show AdminDashboardWidget;
 import 'package:flutter/material.dart';
 
 class AdminDashboardModel extends FlutterFlowModel<AdminDashboardWidget> {
+  ///  Local state fields for this page.
+
+  List<int> sorting = [];
+  void addToSorting(int item) => sorting.add(item);
+  void removeFromSorting(int item) => sorting.remove(item);
+  void removeAtIndexFromSorting(int index) => sorting.removeAt(index);
+  void insertAtIndexInSorting(int index, int item) =>
+      sorting.insert(index, item);
+  void updateSortingAtIndex(int index, Function(int) updateFn) =>
+      sorting[index] = updateFn(sorting[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -76,6 +76,12 @@ class FFAppState extends ChangeNotifier {
     _tableRows = value;
     prefs.setInt('ff_tableRows', value);
   }
+
+  bool _sortDescending = false;
+  bool get sortDescending => _sortDescending;
+  set sortDescending(bool value) {
+    _sortDescending = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

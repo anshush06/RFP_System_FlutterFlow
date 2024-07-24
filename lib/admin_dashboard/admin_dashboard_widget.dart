@@ -324,10 +324,6 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                           controller: _model
                                               .paginatedDataTableController,
                                           data: eachrfp,
-                                          numRows: valueOrDefault<int>(
-                                            FFAppState().tableRows,
-                                            25,
-                                          ),
                                           columnsBuilder: (onSortChanged) => [
                                             DataColumn2(
                                               label: DefaultTextStyle.merge(
@@ -344,6 +340,7 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                                       ),
                                                 ),
                                               ),
+                                              onSort: onSortChanged,
                                             ),
                                             DataColumn2(
                                               label: DefaultTextStyle.merge(
@@ -376,6 +373,7 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                                       ),
                                                 ),
                                               ),
+                                              onSort: onSortChanged,
                                             ),
                                             DataColumn2(
                                               label: DefaultTextStyle.merge(
@@ -473,6 +471,9 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                           dataRowHeight: 48.0,
                                           columnSpacing: 20.0,
                                           headingRowColor: const Color(0xFFD1D0D0),
+                                          sortIconColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           addHorizontalDivider: true,
