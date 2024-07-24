@@ -259,19 +259,6 @@ class AddRFPAPICall {
   }) async {
     final baseUrl = RFPAPIGroupGroup.getBaseUrl();
 
-    final ffApiRequestBody = '''
-{
-  "user_id": $userId,
-  "item_name": "$itemName",
-  "rfp_no": "$rfpNo",
-  "quantity": $quantity,
-  "last_date": "$lastDate",
-  "minimum_price": "$minimumPrice",
-  "maximum_price": "$maximumPrice",
-  "categories": $categories,
-  "vendors": $vendors,
-  "item_description": "$itemDescription"
-}''';
     return ApiManager.instance.makeApiCall(
       callName: 'Add RFP API',
       apiUrl: '$baseUrl/createrfp',
@@ -279,9 +266,19 @@ class AddRFPAPICall {
       headers: {
         'Authorization': 'Bearer $token',
       },
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
+      params: {
+        'user_id': userId,
+        'item_name': itemName,
+        'rfp_no': rfpNo,
+        'quantity': quantity,
+        'last_date': lastDate,
+        'minimum_price': minimumPrice,
+        'maximum_price': maximumPrice,
+        'categories': categories,
+        'vendors': vendors,
+        'item_description': itemDescription,
+      },
+      bodyType: BodyType.MULTIPART,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

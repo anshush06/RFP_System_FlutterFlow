@@ -201,22 +201,6 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                 token: FFAppState().token,
                               );
 
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Loading...',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
-                              await Future.delayed(
-                                  const Duration(milliseconds: 1500));
                               if (getJsonField(
                                     (_model.adminRFPAPIResponse?.jsonBody ??
                                         ''),
@@ -276,15 +260,31 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  FFAppState().name,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 23.0,
-                                        letterSpacing: 0.0,
-                                      ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Hi, ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 23.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Text(
+                                      FFAppState().name,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 23.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                                 Text(
                                   'Welcome to Admin Dashboard',
@@ -295,26 +295,6 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                         fontSize: 23.0,
                                         letterSpacing: 0.0,
                                       ),
-                                ),
-                                CircularPercentIndicator(
-                                  percent: 0.5,
-                                  radius: 60.0,
-                                  lineWidth: 12.0,
-                                  animation: true,
-                                  animateFromLastPercent: true,
-                                  progressColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).accent4,
-                                  center: Text(
-                                    '50%',
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          fontFamily: 'Outfit',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
                                 ),
                               ],
                             ),
@@ -344,6 +324,10 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                           controller: _model
                                               .paginatedDataTableController,
                                           data: eachrfp,
+                                          numRows: valueOrDefault<int>(
+                                            FFAppState().tableRows,
+                                            25,
+                                          ),
                                           columnsBuilder: (onSortChanged) => [
                                             DataColumn2(
                                               label: DefaultTextStyle.merge(
@@ -529,14 +513,24 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                         1.0, 0.0, 0.0, 430.0),
                                     child: LinearPercentIndicator(
                                       percent: 1.0,
-                                      width: 120.0,
-                                      lineHeight: 12.0,
+                                      lineHeight: 20.0,
                                       animation: true,
                                       animateFromLastPercent: true,
                                       progressColor:
                                           FlutterFlowTheme.of(context).primary,
                                       backgroundColor:
                                           FlutterFlowTheme.of(context).accent4,
+                                      center: Text(
+                                        'Loading...',
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineSmall
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              color: const Color(0xFFF8FCFF),
+                                              fontSize: 15.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
                                       padding: EdgeInsets.zero,
                                     ),
                                   ),
@@ -1685,7 +1679,7 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                                                           0.0,
                                                                     ),
                                                             hintText:
-                                                                'Please select category first',
+                                                                'Please select vendors',
                                                             searchHintText:
                                                                 'Search Vendor',
                                                             icon: Icon(

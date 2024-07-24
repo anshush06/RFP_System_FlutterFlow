@@ -25,6 +25,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _userId = prefs.getInt('ff_userId') ?? _userId;
     });
+    _safeInit(() {
+      _tableRows = prefs.getInt('ff_tableRows') ?? _tableRows;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -65,6 +68,13 @@ class FFAppState extends ChangeNotifier {
   set userId(int value) {
     _userId = value;
     prefs.setInt('ff_userId', value);
+  }
+
+  int _tableRows = 25;
+  int get tableRows => _tableRows;
+  set tableRows(int value) {
+    _tableRows = value;
+    prefs.setInt('ff_tableRows', value);
   }
 }
 
